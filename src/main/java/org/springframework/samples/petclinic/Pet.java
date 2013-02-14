@@ -20,12 +20,12 @@ import org.springframework.beans.support.PropertyComparator;
 public class Pet extends NamedEntity {
 
 	private Date birthDate;
-
+	
 	private PetType type;
 
 	private Owner owner;
 
-	private Set<Visit> visits;
+	private Set<Visit> visitsInternal;
 
 
 	public void setBirthDate(Date birthDate) {
@@ -53,14 +53,14 @@ public class Pet extends NamedEntity {
 	}
 
 	protected void setVisitsInternal(Set<Visit> visits) {
-		this.visits = visits;
+		this.visitsInternal = visits;
 	}
 
 	protected Set<Visit> getVisitsInternal() {
-		if (this.visits == null) {
-			this.visits = new HashSet<Visit>();
+		if (this.visitsInternal == null) {
+			this.visitsInternal = new HashSet<Visit>();
 		}
-		return this.visits;
+		return this.visitsInternal;
 	}
 
 	public List<Visit> getVisits() {

@@ -2,7 +2,12 @@ package org.springframework.samples.petclinic.jpa;
 
 import java.util.List;
 
+import org.springframework.samples.petclinic.AbstractClinicTests;
 import org.springframework.samples.petclinic.aspects.UsageLogAspect;
+import org.springframework.test.context.ContextConfiguration;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 /**
  * <p>
@@ -17,7 +22,8 @@ import org.springframework.samples.petclinic.aspects.UsageLogAspect;
  * @author Rod Johnson
  * @author Juergen Hoeller
  */
-public class EntityManagerClinicTests extends AbstractJpaClinicTests {
+public class EntityManagerClinicTests extends AbstractJpaClinicTests 
+{
 
 	private UsageLogAspect usageLogAspect;
 

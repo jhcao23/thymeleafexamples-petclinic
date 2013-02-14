@@ -25,7 +25,7 @@ public class Owner extends Person {
 
 	private String telephone;
 
-	private Set<Pet> pets;
+	private Set<Pet> petsInternal;
 
 
 	public String getAddress() {
@@ -53,14 +53,14 @@ public class Owner extends Person {
 	}
 
 	protected void setPetsInternal(Set<Pet> pets) {
-		this.pets = pets;
+		this.petsInternal = pets;
 	}
 
 	protected Set<Pet> getPetsInternal() {
-		if (this.pets == null) {
-			this.pets = new HashSet<Pet>();
+		if (this.petsInternal == null) {
+			this.petsInternal = new HashSet<Pet>();
 		}
-		return this.pets;
+		return this.petsInternal;
 	}
 
 	public List<Pet> getPets() {

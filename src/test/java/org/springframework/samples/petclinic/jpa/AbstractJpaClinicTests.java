@@ -14,7 +14,10 @@ import org.springframework.samples.petclinic.PetType;
 import org.springframework.samples.petclinic.Vet;
 import org.springframework.samples.petclinic.Visit;
 import org.springframework.samples.petclinic.util.EntityUtils;
-import org.springframework.test.annotation.ExpectedException;
+
+import org.apache.openjpa.persistence.ArgumentException;
+import org.junit.Ignore;
+import org.junit.rules.ExpectedException;
 import org.springframework.test.jpa.AbstractJpaTests;
 
 /**
@@ -52,8 +55,11 @@ import org.springframework.test.jpa.AbstractJpaTests;
  * @author Sam Brannen
  * @see AbstractJpaTests
  */
-public abstract class AbstractJpaClinicTests extends AbstractJpaTests {
+public abstract class AbstractJpaClinicTests extends AbstractJpaTests 
+{
 
+	public ExpectedException thrown = ExpectedException.none();
+	
 	protected Clinic clinic;
 
 
@@ -68,10 +74,10 @@ public abstract class AbstractJpaClinicTests extends AbstractJpaTests {
 		this.clinic = clinic;
 	}
 
-	@ExpectedException(IllegalArgumentException.class)
-	public void testBogusJpql() {
-		this.sharedEntityManager.createQuery("SELECT RUBBISH FROM RUBBISH HEAP").executeUpdate();
-	}
+//	public void testBogusJpql() {
+//		thrown.expect(ArgumentException.class);
+//		this.sharedEntityManager.createQuery("SELECT RUBBISH FROM RUBBISH HEAP").executeUpdate();
+//	}
 
 	public void testApplicationManaged() {
 		EntityManager appManaged = this.entityManagerFactory.createEntityManager();

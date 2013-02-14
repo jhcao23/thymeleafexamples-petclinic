@@ -20,18 +20,18 @@ import org.springframework.beans.support.PropertyComparator;
  */
 public class Vet extends Person {
 
-	private Set<Specialty> specialties;
+	private Set<Specialty> specialtiesInternal;
 
 
 	protected void setSpecialtiesInternal(Set<Specialty> specialties) {
-		this.specialties = specialties;
+		this.specialtiesInternal = specialties;
 	}
 
 	protected Set<Specialty> getSpecialtiesInternal() {
-		if (this.specialties == null) {
-			this.specialties = new HashSet<Specialty>();
+		if (this.specialtiesInternal == null) {
+			this.specialtiesInternal = new HashSet<Specialty>();
 		}
-		return this.specialties;
+		return this.specialtiesInternal;
 	}
 
 	@XmlElement

@@ -17,6 +17,7 @@
 package org.springframework.samples.petclinic.web;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -54,14 +55,15 @@ public class VisitsAtomViewTest {
 		bello.setType(dog);
 		Visit belloVisit = new Visit();
 		belloVisit.setPet(bello);
-		belloVisit.setDate(new Date(2009, 0, 1));
+		
+		belloVisit.setDate(createDate(2009, 0, 1));
 		belloVisit.setDescription("Bello visit");
 		Pet wodan = new Pet();
 		wodan.setName("Wodan");
 		wodan.setType(dog);
 		Visit wodanVisit = new Visit();
 		wodanVisit.setPet(wodan);
-		wodanVisit.setDate(new Date(2009, 0, 2));
+		wodanVisit.setDate(createDate(2009, 0, 2));
 		wodanVisit.setDescription("Wodan visit");
 		List<Visit> visits = new ArrayList<Visit>();
 		visits.add(belloVisit);
@@ -79,12 +81,18 @@ public class VisitsAtomViewTest {
 
 		assertNotNull("No id set", feed.getId());
 		assertNotNull("No title set", feed.getTitle());
-		assertEquals("Invalid update set", new Date(2009, 0, 2), feed.getUpdated());
+		assertEquals("Invalid update set", createDate(2009, 0, 2), feed.getUpdated());
 	}
 
 	@Test
 	public void buildFeedEntries() throws Exception {
 		List<Entry> entries = visitView.buildFeedEntries(model, null, null);
 		assertEquals("Invalid amount of entries", 2, entries.size());
+	}
+	
+	public static Date createDate(int year, int month, int day){
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(year, month, day);
+		return calendar.getTime();
 	}
 }
